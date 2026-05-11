@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 360" role="img" aria-labelledby="title desc">
+  <title id="title">Website animation</title>
+  <desc id="desc">Animated browser preview for a local business website.</desc>
+  <style>
+    .shell{fill:#fffaf1;stroke:#151512;stroke-opacity:.14}
+    .ink{fill:#151512}
+    .muted{fill:#d8cfbf}
+    .green{fill:#00b66d}
+    .lime{fill:#c8ff5a}
+    .line{fill:none;stroke:#151512;stroke-opacity:.16;stroke-width:3}
+    .float{animation:float 4s ease-in-out infinite}
+    .pulse{animation:pulse 2.6s ease-in-out infinite}
+    .slide{animation:slide 4s ease-in-out infinite}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+    @keyframes pulse{0%,100%{opacity:.35;transform:scale(.96)}50%{opacity:1;transform:scale(1)}}
+    @keyframes slide{0%,100%{transform:translateX(0)}50%{transform:translateX(34px)}}
+  </style>
+  <rect width="520" height="360" rx="28" fill="#f0ebe2"/>
+  <g class="float">
+    <rect class="shell" x="64" y="54" width="392" height="252" rx="18"/>
+    <rect x="64" y="54" width="392" height="44" rx="18" fill="#151512"/>
+    <circle cx="94" cy="76" r="6" fill="#ff8b66"/>
+    <circle cx="116" cy="76" r="6" fill="#c8ff5a"/>
+    <circle cx="138" cy="76" r="6" fill="#8ec5ff"/>
+    <rect class="muted" x="92" y="126" width="148" height="16" rx="8"/>
+    <rect class="ink" x="92" y="154" width="230" height="26" rx="13"/>
+    <rect class="ink" x="92" y="190" width="182" height="26" rx="13"/>
+    <rect class="green pulse" x="92" y="236" width="124" height="36" rx="18"/>
+    <rect class="muted" x="294" y="126" width="118" height="132" rx="16"/>
+    <path class="line slide" d="M310 164h68M310 194h52M310 224h76"/>
+  </g>
+</svg>

@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 360" role="img" aria-labelledby="title desc">
+  <title id="title">Automation animation</title>
+  <desc id="desc">Animated automation workflow from WhatsApp to follow-up.</desc>
+  <style>
+    .bg{fill:#f0ebe2}
+    .node{fill:#fffaf1;stroke:#151512;stroke-opacity:.14}
+    .dark{fill:#151512}
+    .green{fill:#00b66d}
+    .lime{fill:#c8ff5a}
+    .line{fill:none;stroke:#151512;stroke-opacity:.2;stroke-width:5;stroke-linecap:round}
+    .dot{animation:move 3.2s ease-in-out infinite}
+    .node2{animation:pop 3.2s ease-in-out infinite}
+    @keyframes move{0%{transform:translateX(0);opacity:0}15%{opacity:1}50%{transform:translateX(132px)}85%{opacity:1}100%{transform:translateX(260px);opacity:0}}
+    @keyframes pop{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+  </style>
+  <rect class="bg" width="520" height="360" rx="28"/>
+  <path class="line" d="M136 180h248"/>
+  <circle class="dot green" cx="136" cy="180" r="12"/>
+  <g>
+    <rect class="node" x="58" y="116" width="132" height="128" rx="22"/>
+    <circle class="green" cx="124" cy="154" r="22"/>
+    <rect class="dark" x="92" y="194" width="66" height="12" rx="6"/>
+    <rect class="dark" x="104" y="216" width="42" height="8" rx="4" opacity=".35"/>
+  </g>
+  <g class="node2">
+    <rect class="node" x="194" y="104" width="132" height="152" rx="22"/>
+    <rect class="lime" x="226" y="136" width="68" height="48" rx="12"/>
+    <rect class="dark" x="226" y="204" width="68" height="12" rx="6"/>
+    <rect class="dark" x="238" y="226" width="44" height="8" rx="4" opacity=".35"/>
+  </g>
+  <g>
+    <rect class="node" x="330" y="116" width="132" height="128" rx="22"/>
+    <circle class="dark" cx="396" cy="154" r="22"/>
+    <rect class="green" x="364" y="194" width="66" height="12" rx="6"/>
+    <rect class="dark" x="376" y="216" width="42" height="8" rx="4" opacity=".35"/>
+  </g>
+</svg>
