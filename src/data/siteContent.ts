@@ -73,6 +73,19 @@ export const businessSolutions = [
   },
 ];
 
+export const portfolioExamples = [
+  {
+    type: "Website premium",
+    title: "Atelier Navalha",
+    description:
+      "Template premium para barbearias, com marcação, galeria, serviços, mapa e experiência visual de alto nível.",
+    href: "https://atelier-navalha-premium-template.vercel.app",
+    imageUrl:
+      "https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=1400&q=84",
+    tags: ["Next.js", "Barbearia", "Portfolio"],
+  },
+];
+
 export const processSteps = [
   {
     title: "Diagnóstico",

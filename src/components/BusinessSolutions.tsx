@@ -1,4 +1,4 @@
-import { businessSolutions, services, whatsappLink } from "../data/siteContent";
+import { businessSolutions, portfolioExamples, services, whatsappLink } from "../data/siteContent";
 import { MagneticButton } from "./ui/motion-footer";
 
 export function BusinessSolutions() {
@@ -60,6 +60,40 @@ export function BusinessSolutions() {
           </article>
         ))}
       </div>
+
+      <div className="portfolio-strip reveal" aria-label="Exemplos de portfolio da Mionga">
+        <div className="portfolio-strip-copy">
+          <span className="section-label">Portfolio / exemplo</span>
+          <h3>Um template premium pronto para mostrar o nível visual que um negócio local pode ter.</h3>
+          <p>
+            Este exemplo foi criado para barbearias que querem parecer tão profissionais online
+            como são na cadeira: marca forte, fotografias, serviços claros e marcação simples.
+          </p>
+        </div>
+
+        {portfolioExamples.map((example) => (
+          <a
+            className="portfolio-example-card"
+            href={example.href}
+            key={example.title}
+            rel="noreferrer"
+            target="_blank"
+          >
+            <img src={example.imageUrl} alt={`Exemplo de website ${example.title}`} loading="lazy" decoding="async" />
+            <div>
+              <span>{example.type}</span>
+              <h4>{example.title}</h4>
+              <p>{example.description}</p>
+              <div className="tag-row">
+                {example.tags.map((tag) => (
+                  <span key={tag}>{tag}</span>
+                ))}
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+
       <div className="inline-cta">
         <h3>Pronto para aparecer melhor online?</h3>
         <MagneticButton as="a" className="button" href={whatsappLink()} target="_blank" rel="noreferrer">
