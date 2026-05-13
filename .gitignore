@@ -4,6 +4,9 @@ node_modules/
 # Production build
 dist/
 
+# Separate products/templates
+/barbearia/
+
 # Local environment files
 .env
 .env.*
