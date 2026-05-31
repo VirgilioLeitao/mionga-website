@@ -64,34 +64,36 @@ export function BusinessSolutions() {
       <div className="portfolio-strip reveal" aria-label="Exemplos de portfolio da Mionga">
         <div className="portfolio-strip-copy">
           <span className="section-label">Portfolio / exemplo</span>
-          <h3>Um template premium pronto para mostrar o nível visual que um negócio local pode ter.</h3>
+          <h3>Templates premium prontos para mostrar o nível visual que um negócio local pode ter.</h3>
           <p>
-            Este exemplo foi criado para barbearias que querem parecer tão profissionais online
-            como são na cadeira: marca forte, fotografias, serviços claros e marcação simples.
+            Estes exemplos mostram como um negócio local pode parecer profissional online:
+            marca forte, fotografias, serviços claros e marcação simples.
           </p>
         </div>
 
-        {portfolioExamples.map((example) => (
-          <a
-            className="portfolio-example-card"
-            href={example.href}
-            key={example.title}
-            rel="noreferrer"
-            target="_blank"
-          >
-            <img src={example.imageUrl} alt={`Exemplo de website ${example.title}`} loading="lazy" decoding="async" />
-            <div>
-              <span>{example.type}</span>
-              <h4>{example.title}</h4>
-              <p>{example.description}</p>
-              <div className="tag-row">
-                {example.tags.map((tag) => (
-                  <span key={tag}>{tag}</span>
-                ))}
+        <div className="portfolio-examples-grid">
+          {portfolioExamples.map((example) => (
+            <a
+              className="portfolio-example-card"
+              href={example.href}
+              key={example.title}
+              rel="noreferrer"
+              target="_blank"
+            >
+              <img src={example.imageUrl} alt={`Exemplo de website ${example.title}`} loading="lazy" decoding="async" />
+              <div>
+                <span>{example.type}</span>
+                <h4>{example.title}</h4>
+                <p>{example.description}</p>
+                <div className="tag-row">
+                  {example.tags.map((tag) => (
+                    <span key={tag}>{tag}</span>
+                  ))}
+                </div>
               </div>
-            </div>
-          </a>
-        ))}
+            </a>
+          ))}
+        </div>
       </div>
 
       <div className="inline-cta">

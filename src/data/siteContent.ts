@@ -84,6 +84,16 @@ export const portfolioExamples = [
       "https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=1400&q=84",
     tags: ["Next.js", "Barbearia", "Portfolio"],
   },
+  {
+    type: "Website premium",
+    title: "Luzea Hair Atelier",
+    description:
+      "Template premium para cabeleireiros, com serviços, galeria, testemunhos, marcação por WhatsApp e presença visual elegante.",
+    href: "https://cabelereiro-website.vercel.app/",
+    imageUrl:
+      "https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=1400&q=84",
+    tags: ["Next.js", "Cabeleireiro", "Portfolio"],
+  },
 ];
 
 export const processSteps = [

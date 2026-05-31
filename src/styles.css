@@ -785,6 +785,12 @@ main > .section-shell > * {
   line-height: 1.55;
 }
 
+.portfolio-examples-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(240px, 1fr));
+  gap: 18px;
+}
+
 .portfolio-example-card {
   position: relative;
   display: grid;
@@ -1824,6 +1830,10 @@ main .final-cta p {
     grid-template-columns: 1fr;
   }
 
+  .portfolio-examples-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .timeline {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1916,6 +1926,10 @@ main .final-cta p {
   .portfolio-example-card {
     min-height: 390px;
     border-radius: 18px;
+  }
+
+  .portfolio-examples-grid {
+    grid-template-columns: 1fr;
   }
 
   .portfolio-example-card > div {
