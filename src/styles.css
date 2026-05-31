@@ -1856,6 +1856,11 @@ main .final-cta p {
     width: min(100% - 28px, 1360px);
   }
 
+  main > .section-shell {
+    width: min(100% - 24px, 1180px);
+    padding-inline: 16px;
+  }
+
   .site-header {
     padding: 14px;
   }
@@ -1892,11 +1897,33 @@ main .final-cta p {
   }
 
   .portfolio-strip {
-    padding: 22px;
+    gap: 22px;
+    margin-inline: -8px;
+    padding: 18px;
+    border-radius: 22px;
+  }
+
+  .portfolio-strip-copy h3 {
+    font-size: clamp(1.85rem, 8.2vw, 2.85rem);
+    line-height: 1.03;
+  }
+
+  .portfolio-strip-copy p {
+    margin-top: 16px;
+    font-size: 0.98rem;
   }
 
   .portfolio-example-card {
-    min-height: 360px;
+    min-height: 390px;
+    border-radius: 18px;
+  }
+
+  .portfolio-example-card > div {
+    padding: 20px;
+  }
+
+  .portfolio-example-card h4 {
+    font-size: clamp(1.8rem, 9.5vw, 2.75rem);
   }
 
   .timeline-item {
@@ -1967,6 +1994,19 @@ main .final-cta p {
 
   .solution-copy p {
     min-height: auto;
+  }
+
+  .portfolio-strip {
+    margin-inline: -10px;
+    padding: 16px;
+  }
+
+  .portfolio-example-card {
+    min-height: 370px;
+  }
+
+  .portfolio-example-card .tag-row {
+    gap: 6px;
   }
 
   .floating-whatsapp {
