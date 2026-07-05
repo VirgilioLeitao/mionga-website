@@ -1,9 +1,18 @@
 import { useState } from "react";
-import { navItems } from "../data/siteContent";
+import { useLanguage } from "../i18n/LanguageContext";
 import { Logo } from "./Logo";
+import { LanguageToggle } from "../i18n/LanguageToggle";
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { t } = useLanguage();
+
+  const navItems = [
+    { label: t.nav.home, href: "#top" },
+    { label: t.nav.solutions, href: "#solucoes" },
+    { label: t.nav.process, href: "#processo" },
+    { label: t.nav.contact, href: "#contacto" },
+  ];
 
   return (
     <header className="site-header">
@@ -16,12 +25,13 @@ export function Header() {
             {item.label}
           </a>
         ))}
+        <LanguageToggle />
       </nav>
       <div className="header-actions">
         <button
           className="menu-toggle"
           type="button"
-          aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
+          aria-label={menuOpen ? t.menuToggle.close : t.menuToggle.open}
           aria-expanded={menuOpen}
           onClick={() => setMenuOpen((value) => !value)}
         >

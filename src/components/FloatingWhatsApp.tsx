@@ -1,13 +1,16 @@
 import { whatsappLink } from "../data/siteContent";
+import { useLanguage } from "../i18n/LanguageContext";
 
 export function FloatingWhatsApp() {
+  const { t } = useLanguage();
+
   return (
     <a
       className="floating-whatsapp"
-      href={whatsappLink()}
+      href={whatsappLink(t.whatsapp.default)}
       target="_blank"
       rel="noreferrer"
-      aria-label="Falar com a Mionga no WhatsApp"
+      aria-label={t.floatingWhatsApp.ariaLabel}
     >
       <svg viewBox="0 0 32 32" aria-hidden="true">
         <path
@@ -15,7 +18,7 @@ export function FloatingWhatsApp() {
           d="M16.04 3.2A12.68 12.68 0 0 0 5.1 22.3L3.2 29l6.86-1.8A12.67 12.67 0 1 0 16.04 3.2Zm0 2.26a10.4 10.4 0 0 1 8.82 15.94 10.4 10.4 0 0 1-13.98 3.55l-.5-.3-4.08 1.07 1.1-3.98-.33-.52A10.42 10.42 0 0 1 16.04 5.46Zm-4.4 4.77c-.22 0-.58.08-.88.4-.3.32-1.16 1.13-1.16 2.76 0 1.63 1.2 3.2 1.36 3.43.17.22 2.32 3.7 5.73 5.04 2.84 1.12 3.42.9 4.04.84.62-.05 2-.82 2.28-1.6.28-.8.28-1.47.2-1.61-.08-.14-.3-.23-.64-.4-.34-.17-2-.98-2.3-1.1-.31-.1-.54-.16-.77.18-.23.34-.88 1.1-1.08 1.32-.2.22-.4.25-.74.08-.34-.17-1.43-.53-2.72-1.68-1-.9-1.68-2.02-1.88-2.36-.2-.34-.02-.52.15-.69.16-.16.34-.4.51-.6.17-.2.23-.34.34-.56.11-.23.06-.43-.03-.6-.08-.17-.76-1.84-1.04-2.52-.27-.65-.55-.56-.76-.57l-.65-.01Z"
         />
       </svg>
-      <span>WhatsApp</span>
+      <span>{t.common.whatsapp}</span>
     </a>
   );
 }

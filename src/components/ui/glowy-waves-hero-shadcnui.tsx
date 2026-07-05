@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 
 import { whatsappLink } from "@/data/siteContent";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 type Point = {
   x: number;
@@ -17,14 +18,6 @@ interface WaveConfig {
   color: string;
   opacity: number;
 }
-
-const highlightPills = ["Websites rápidos", "Redes sociais", "Automações simples"] as const;
-
-const heroStats = [
-  { label: "Foco principal", value: "Websites" },
-  { label: "Conversão", value: "WhatsApp" },
-  { label: "Mercado", value: "Portugal" },
-];
 
 const wavePalette: WaveConfig[] = [
   { offset: 0, amplitude: 62, frequency: 0.003, color: "rgba(110, 231, 183, 0.82)", opacity: 0.52 },
@@ -64,6 +57,7 @@ export function GlowyWavesHero() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const mouseRef = useRef<Point>({ x: 0, y: 0 });
   const targetMouseRef = useRef<Point>({ x: 0, y: 0 });
+  const { t } = useLanguage();
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -184,7 +178,7 @@ export function GlowyWavesHero() {
     <section
       className="relative isolate flex min-h-[calc(100svh-var(--header-height))] w-full items-center justify-center overflow-hidden bg-[#030303] text-[#f8f1e6]"
       id="top"
-      aria-label="Hero da Mionga"
+      aria-label={t.hero.ariaLabel}
     >
       <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" aria-hidden="true" />
 
@@ -208,21 +202,21 @@ export function GlowyWavesHero() {
             className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/[0.055] px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-white/72 backdrop-blur-xl"
           >
             <Sparkles data-icon="inline-start" aria-hidden="true" />
-            Mionga Digital Studio
+            {t.hero.badge}
           </motion.div>
 
           <motion.h1
             variants={itemVariants}
             className="mx-auto mb-5 max-w-[21.5rem] text-[2.08rem] font-black leading-[1.02] tracking-normal text-white sm:max-w-5xl sm:text-5xl md:text-6xl lg:text-7xl"
           >
-            <span className="block sm:inline">Websites premium </span>
-            <span className="block sm:inline">para pequenos negócios </span>
-            <span className="block sm:inline">que querem </span>
+            <span className="block sm:inline">{t.hero.title.line1}</span>
+            <span className="block sm:inline">{t.hero.title.line2}</span>
+            <span className="block sm:inline">{t.hero.title.line3}</span>
             <span className="block bg-gradient-to-r from-emerald-200 via-white to-rose-200 bg-clip-text text-transparent sm:inline">
-              vender mais{" "}
+              {t.hero.title.gradient1}
             </span>
             <span className="block bg-gradient-to-r from-emerald-200 via-white to-rose-200 bg-clip-text text-transparent sm:inline">
-              online.
+              {t.hero.title.gradient2}
             </span>
           </motion.h1>
 
@@ -230,17 +224,16 @@ export function GlowyWavesHero() {
             variants={itemVariants}
             className="mx-auto mb-7 max-w-[21rem] text-sm font-medium leading-relaxed text-white/58 sm:max-w-3xl sm:text-lg md:text-xl"
           >
-            Criamos websites rápidos, presença social consistente e automações simples para negócios
-            em Portugal que precisam de parecer profissionais e gerar contactos.
+            {t.hero.subtitle}
           </motion.p>
 
           <motion.div
             variants={itemVariants}
             className="mb-6 flex flex-col items-center justify-center gap-3 sm:mb-7 sm:flex-row"
           >
-            <a href={whatsappLink()} target="_blank" rel="noreferrer">
+            <a href={whatsappLink(t.whatsapp.default)} target="_blank" rel="noreferrer">
               <Button size="lg" className="group uppercase tracking-[0.14em]">
-                Falar no WhatsApp
+                {t.hero.ctaWhatsapp}
                 <ArrowRight data-icon="inline-end" aria-hidden="true" />
               </Button>
             </a>
@@ -250,7 +243,7 @@ export function GlowyWavesHero() {
                 variant="outline"
                 className="uppercase tracking-[0.14em]"
               >
-                Ver soluções
+                {t.hero.ctaSolutions}
               </Button>
             </a>
           </motion.div>
@@ -259,7 +252,7 @@ export function GlowyWavesHero() {
             variants={itemVariants}
             className="mb-7 flex flex-wrap items-center justify-center gap-3 text-xs font-black uppercase tracking-[0.16em] text-white/68"
           >
-            {highlightPills.map((pill) => (
+            {t.hero.pills.map((pill) => (
               <li
                 key={pill}
                 className="rounded-full border border-white/12 bg-white/[0.055] px-3 py-2 tracking-[0.1em] backdrop-blur-xl sm:px-4 sm:tracking-[0.16em]"
@@ -273,7 +266,7 @@ export function GlowyWavesHero() {
             variants={statsVariants}
             className="mx-auto hidden w-full max-w-2xl gap-0 overflow-hidden rounded-2xl border border-white/12 bg-white/[0.06] text-left shadow-[0_22px_70px_rgba(0,0,0,0.28)] backdrop-blur-xl sm:grid sm:grid-cols-3"
           >
-            {heroStats.map((stat) => (
+            {t.hero.stats.map((stat) => (
               <div
                 key={stat.label}
                 className="border-b border-white/10 p-3 sm:border-b-0 sm:border-r sm:p-4 last:border-r-0"
@@ -290,14 +283,14 @@ export function GlowyWavesHero() {
 
       <div className="pointer-events-none absolute right-8 top-32 hidden max-w-[220px] rounded-2xl border border-white/10 bg-white/[0.055] p-4 text-left text-sm text-white/62 shadow-[0_24px_70px_rgba(0,0,0,0.24)] backdrop-blur-xl 2xl:block">
         <Search aria-hidden="true" className="mb-3 text-emerald-200" />
-        <strong className="block text-white">SEO e performance</strong>
-        Sites preparados para carregar rápido e receber contactos.
+        <strong className="block text-white">{t.hero.cardSeo.title}</strong>
+        {t.hero.cardSeo.text}
       </div>
 
       <div className="pointer-events-none absolute left-8 bottom-28 hidden max-w-[220px] rounded-2xl border border-white/10 bg-white/[0.055] p-4 text-left text-sm text-white/62 shadow-[0_24px_70px_rgba(0,0,0,0.24)] backdrop-blur-xl 2xl:block">
         <Zap aria-hidden="true" className="mb-3 text-[#c8ff5a]" />
-        <strong className="block text-white">Automação útil</strong>
-        Fluxos simples para responder mais depressa no dia a dia.
+        <strong className="block text-white">{t.hero.cardAutomation.title}</strong>
+        {t.hero.cardAutomation.text}
       </div>
     </section>
   );

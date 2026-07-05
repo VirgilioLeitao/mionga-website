@@ -8,8 +8,68 @@ import { FinalCTA } from "./components/FinalCTA";
 import { CinematicFooter } from "@/components/ui/motion-footer";
 import { FloatingWhatsApp } from "./components/FloatingWhatsApp";
 import { BackToTop } from "./components/BackToTop";
+import { LanguageProvider, useLanguage } from "./i18n/LanguageContext";
+import { contact } from "./data/siteContent";
 
-export default function App() {
+function SeoUpdater() {
+  const { language, t } = useLanguage();
+
+  useEffect(() => {
+    document.title = t.meta.title;
+
+    const setMeta = (attr: string, key: string, value: string) => {
+      let el = document.querySelector(`meta[${attr}="${key}"]`) as HTMLMetaElement | null;
+      if (!el) {
+        el = document.createElement("meta");
+        el.setAttribute(attr, key);
+        document.head.appendChild(el);
+      }
+      el.content = value;
+    };
+
+    setMeta("name", "description", t.meta.description);
+    setMeta("name", "keywords", t.meta.keywords);
+    setMeta("property", "og:title", t.meta.ogTitle);
+    setMeta("property", "og:description", t.meta.ogDescription);
+    setMeta("property", "og:locale", language === "en" ? "en_GB" : "pt_PT");
+    setMeta("name", "twitter:title", t.meta.twitterTitle);
+    setMeta("name", "twitter:description", t.meta.twitterDescription);
+
+    // Update JSON-LD
+    const scriptId = "mionga-jsonld";
+    let script = document.getElementById(scriptId) as HTMLScriptElement | null;
+    if (!script) {
+      script = document.createElement("script");
+      script.id = scriptId;
+      script.type = "application/ld+json";
+      document.head.appendChild(script);
+    }
+    script.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      name: "Mionga",
+      url: "https://www.mionga.com/",
+      logo: "https://www.mionga.com/assets/logo.svg",
+      areaServed: {
+        "@type": "Country",
+        name: "Portugal",
+      },
+      description: t.meta.jsonLd.description,
+      sameAs: [contact.instagramUrl],
+      contactPoint: {
+        "@type": "ContactPoint",
+        telephone: `+${contact.whatsappNumber.replace(/\D/g, "")}`,
+        contactType: "sales",
+        availableLanguage: language === "en" ? ["English", "Portuguese"] : ["Portuguese"],
+      },
+      serviceType: t.meta.jsonLd.services,
+    });
+  }, [language, t]);
+
+  return null;
+}
+
+function AppContent() {
   useEffect(() => {
     const updateProgress = () => {
       const scrollable = document.documentElement.scrollHeight - window.innerHeight;
@@ -42,6 +102,7 @@ export default function App() {
 
   return (
     <>
+      <SeoUpdater />
       <div className="scroll-progress" aria-hidden="true" />
       <Header />
       <main>
@@ -55,5 +116,13 @@ export default function App() {
       <BackToTop />
       <FloatingWhatsApp />
     </>
+  );
+}
+
+export default function App() {
+  return (
+    <LanguageProvider>
+      <AppContent />
+    </LanguageProvider>
   );
 }

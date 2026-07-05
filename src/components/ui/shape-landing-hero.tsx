@@ -4,6 +4,7 @@ import type { CSSProperties } from "react";
 import { cn } from "@/lib/utils";
 import { whatsappLink } from "@/data/siteContent";
 import { MagneticButton } from "@/components/ui/motion-footer";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 function ElegantShape({
   className,
@@ -41,15 +42,9 @@ function ElegantShape({
   );
 }
 
-function HeroGeometric({
-  badge = "Mionga Digital Studio",
-  title1 = "Pequenos negócios.",
-  title2 = "Presença digital grande.",
-}: {
-  badge?: string;
-  title1?: string;
-  title2?: string;
-}) {
+function HeroGeometric() {
+  const { t } = useLanguage();
+
   return (
     <section
       id="top"
@@ -107,13 +102,13 @@ function HeroGeometric({
             style={{ "--hero-delay": "0.5s" } as CSSProperties}
           >
             <span className="h-2 w-2 rounded-full bg-emerald-400/80" />
-            <span className="text-sm tracking-wide text-white/60">{badge}</span>
+            <span className="text-sm tracking-wide text-white/60">{t.heroGeometric.badge}</span>
           </div>
 
           <div className="hero-fade-up" style={{ "--hero-delay": "0.7s" } as CSSProperties}>
             <h1 className="mb-6 text-4xl font-bold tracking-tight sm:text-6xl md:mb-8 md:text-8xl">
               <span className="bg-gradient-to-b from-white to-white/80 bg-clip-text text-transparent">
-                {title1}
+                {t.heroGeometric.title1}
               </span>
               <br />
               <span
@@ -121,15 +116,14 @@ function HeroGeometric({
                   "bg-gradient-to-r from-emerald-300 via-white/90 to-rose-300 bg-clip-text text-transparent",
                 )}
               >
-                {title2}
+                {t.heroGeometric.title2}
               </span>
             </h1>
           </div>
 
           <div className="hero-fade-up" style={{ "--hero-delay": "0.9s" } as CSSProperties}>
             <p className="mx-auto mb-8 max-w-2xl px-4 text-base font-light leading-relaxed tracking-wide text-white/45 sm:text-lg md:text-xl">
-              Criamos websites, conteúdos e automações para pequenos negócios em Portugal que querem
-              parecer profissionais, responder mais rápido e vender melhor.
+              {t.heroGeometric.subtitle}
             </p>
           </div>
 
@@ -140,18 +134,18 @@ function HeroGeometric({
             <MagneticButton
               as="a"
               className="rounded-full bg-emerald-300 px-7 py-3.5 text-sm font-black text-[#03140a] shadow-[0_18px_45px_rgba(110,231,183,0.32)] ring-1 ring-white/20 transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-[0_24px_64px_rgba(110,231,183,0.42)]"
-              href={whatsappLink()}
+              href={whatsappLink(t.whatsapp.default)}
               target="_blank"
               rel="noreferrer"
             >
-              Falar no WhatsApp
+              {t.heroGeometric.ctaWhatsapp}
             </MagneticButton>
             <MagneticButton
               as="a"
               className="rounded-full border border-white/15 px-6 py-3 text-sm font-bold text-white/75 transition-colors duration-300 hover:border-white/30 hover:text-white"
               href="#solucoes"
             >
-              Ver soluções
+              {t.heroGeometric.ctaSolutions}
             </MagneticButton>
           </div>
         </div>

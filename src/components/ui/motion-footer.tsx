@@ -8,6 +8,7 @@ import { CameraIcon, LinkIcon, SendIcon, type LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { contact, whatsappLink } from "@/data/siteContent";
 import { Logo } from "@/components/Logo";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 type FooterLink = {
   title: string;
@@ -109,49 +110,10 @@ export const MagneticButton = React.forwardRef<HTMLElement, MagneticButtonProps>
 
 MagneticButton.displayName = "MagneticButton";
 
-const marqueeItems = [
-  "Websites rápidos",
-  "Redes sociais consistentes",
-  "Automações úteis",
-  "WhatsApp sem atrito",
-  "Pequenos negócios em Portugal",
-];
-
-const footerColumns: FooterColumn[] = [
-  {
-    label: "Serviços",
-    links: [
-      { title: "Websites", href: "#solucoes" },
-      { title: "Gestão de redes sociais", href: "#solucoes" },
-      { title: "Automações", href: "#solucoes" },
-      { title: "Processo", href: "#processo" },
-    ],
-  },
-  {
-    label: "Mionga",
-    links: [
-      { title: "Início", href: "#top" },
-      { title: "Soluções", href: "#solucoes" },
-      { title: "Contacto", href: "#contacto" },
-      { title: "WhatsApp", href: whatsappLink(), external: true },
-    ],
-  },
-  {
-    label: "Social",
-    links: [
-      { title: "Instagram", href: contact.instagramUrl || "#", icon: CameraIcon, external: true },
-      ...(contact.linkedinUrl
-        ? [{ title: "LinkedIn", href: contact.linkedinUrl, icon: SendIcon, external: true }]
-        : []),
-      { title: "WhatsApp", href: whatsappLink(), icon: LinkIcon, external: true },
-    ],
-  },
-];
-
-function MarqueeRow() {
+function MarqueeRow({ items }: { items: readonly string[] }) {
   return (
     <div className="cinematic-marquee-row" aria-hidden="true">
-      {[...marqueeItems, ...marqueeItems].map((item, index) => (
+      {[...items, ...items].map((item, index) => (
         <React.Fragment key={`${item}-${index}`}>
           <span>{item}</span>
           <i />
@@ -166,6 +128,38 @@ export function CinematicFooter() {
   const giantTextRef = useRef<HTMLDivElement | null>(null);
   const headingRef = useRef<HTMLHeadingElement | null>(null);
   const linksRef = useRef<HTMLDivElement | null>(null);
+  const { t } = useLanguage();
+
+  const footerColumns: FooterColumn[] = React.useMemo(() => [
+    {
+      label: t.footer.columns[0].label,
+      links: [
+        { title: t.footer.columns[0].links[0], href: "#solucoes" },
+        { title: t.footer.columns[0].links[1], href: "#solucoes" },
+        { title: t.footer.columns[0].links[2], href: "#solucoes" },
+        { title: t.footer.columns[0].links[3], href: "#processo" },
+      ],
+    },
+    {
+      label: t.footer.columns[1].label,
+      links: [
+        { title: t.footer.columns[1].links[0], href: "#top" },
+        { title: t.footer.columns[1].links[1], href: "#solucoes" },
+        { title: t.footer.columns[1].links[2], href: "#contacto" },
+        { title: t.footer.columns[1].links[3], href: whatsappLink(), external: true },
+      ],
+    },
+    {
+      label: t.footer.columns[2].label,
+      links: [
+        { title: t.footer.columns[2].links[0], href: contact.instagramUrl || "#", icon: CameraIcon, external: true },
+        ...(contact.linkedinUrl
+          ? [{ title: t.common.linkedin, href: contact.linkedinUrl, icon: SendIcon, external: true }]
+          : []),
+        { title: t.footer.columns[2].links[1], href: whatsappLink(), icon: LinkIcon, external: true },
+      ],
+    },
+  ], [t]);
 
   useEffect(() => {
     const wrapper = wrapperRef.current;
@@ -229,41 +223,39 @@ export function CinematicFooter() {
       </div>
 
       <div className="cinematic-marquee">
-        <MarqueeRow />
+        <MarqueeRow items={t.footer.marquee} />
       </div>
 
       <div className="cinematic-footer-inner">
         <div className="cinematic-footer-brand cinematic-footer-reveal">
-          <a className="cinematic-footer-logo" href="#top" aria-label="Mionga">
+          <a className="cinematic-footer-logo" href="#top" aria-label={t.footer.ariaLabel}>
             <Logo />
           </a>
           <p>
-            Websites, redes sociais e automações para pequenos negócios em Portugal que querem
-            parecer profissionais e vender melhor.
+            {t.footer.brand}
           </p>
         </div>
 
         <div className="cinematic-footer-center">
           <span className="cinematic-footer-kicker cinematic-footer-reveal">
-            Próximo passo simples
+            {t.footer.kicker}
           </span>
           <h2 id="footer-heading" ref={headingRef}>
-            Vamos pôr o teu negócio online com intenção.
+            {t.footer.heading}
           </h2>
           <p className="cinematic-footer-copy cinematic-footer-reveal">
-            Fala connosco pelo WhatsApp e recebe uma direção clara para o teu website, conteúdo ou
-            automação.
+            {t.footer.copy}
           </p>
 
           <div className="cinematic-footer-actions" ref={linksRef}>
             <MagneticButton
               as="a"
               className="footer-glass-pill footer-primary-pill"
-              href={whatsappLink()}
+              href={whatsappLink(t.whatsapp.default)}
               target="_blank"
               rel="noreferrer"
             >
-              Falar no WhatsApp
+              {t.footer.ctaWhatsapp}
             </MagneticButton>
             <MagneticButton
               as="a"
@@ -272,7 +264,7 @@ export function CinematicFooter() {
               target="_blank"
               rel="noreferrer"
             >
-              Ver Instagram
+              {t.footer.ctaInstagram}
             </MagneticButton>
           </div>
         </div>
@@ -305,8 +297,8 @@ export function CinematicFooter() {
       </div>
 
       <div className="cinematic-footer-bottom">
-        <p>© {new Date().getFullYear()} Mionga. Todos os direitos reservados.</p>
-        <span>Feito para pequenos negócios em Portugal.</span>
+        <p>© {new Date().getFullYear()} {t.footer.copyright}</p>
+        <span>{t.footer.tagline}</span>
       </div>
     </footer>
   );

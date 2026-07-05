@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import { useLanguage } from "../i18n/LanguageContext";
 
 export function BackToTop() {
   const [isVisible, setIsVisible] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const updateVisibility = () => {
@@ -23,7 +25,7 @@ export function BackToTop() {
     <a
       className={isVisible ? "back-to-top is-visible" : "back-to-top"}
       href="#top"
-      aria-label="Voltar ao início da página"
+      aria-label={t.backToTop.ariaLabel}
       aria-hidden={!isVisible}
       tabIndex={isVisible ? 0 : -1}
     >
